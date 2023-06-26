@@ -4,11 +4,9 @@ import { Typography, Card, CardContent, CardMedia } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 
 import {
-  demoThumbnailUrl,
   demoVideoUrl,
   demoVideoTitle,
   demoChannelTitle,
-  demoChannelUrl,
 } from "../utils/constants";
 
 const VideoCard = ({
@@ -21,7 +19,7 @@ const VideoCard = ({
     <Card
       sx={{
         borderRadius: "10px",
-        width: { xs: "100%", md: "320px", sm: "358px" },
+        width: { xs: "300px", md: "320px", sm: "320px" },
       }}
     >
       <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
@@ -34,7 +32,9 @@ const VideoCard = ({
             borderRadius: "10px 10px 0 0",
           }}
         />
-        <CardContent sx={{ background: "#1e1e1e", height: "160px" }}>
+      </Link>
+      <CardContent sx={{ background: "#1e1e1e", height: "100px" }}>
+        <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
           <Typography
             sx={{ maxWidth: 358 }}
             variant="subtitle1"
@@ -43,25 +43,23 @@ const VideoCard = ({
           >
             {snippet?.title.slice(0, 60) || demoVideoTitle}
           </Typography>
-          <Link
-            to={
-              snippet?.channelId
-                ? `/channel/${snippet?.channelId}`
-                : demoVideoUrl
-            }
+        </Link>
+        <Link
+          to={
+            snippet?.channelId ? `/channel/${snippet?.channelId}` : demoVideoUrl
+          }
+        >
+          <Typography
+            sx={{ maxWidth: 358 }}
+            variant="subtitle2"
+            fontWeight="bold"
+            color="gray"
           >
-            <Typography
-              sx={{ maxWidth: 358 }}
-              variant="subtitle2"
-              fontWeight="bold"
-              color="gray"
-            >
-              {snippet?.channelTitle.slice(0, 60) || demoChannelTitle}
-              <CheckCircle sx={{ fontSize: 12, color: "gray", ml: "5px" }} />
-            </Typography>
-          </Link>
-        </CardContent>
-      </Link>
+            {snippet?.channelTitle.slice(0, 60) || demoChannelTitle}
+            <CheckCircle sx={{ fontSize: 12, color: "gray", ml: "5px" }} />
+          </Typography>
+        </Link>
+      </CardContent>
     </Card>
   );
 };

@@ -22,7 +22,6 @@ const VideoDetail = () => {
     );
   }, [id]);
 
-  console.log(videoDetail);
   if (!videoDetail?.snippet) return <Loader />;
 
   const {
@@ -51,10 +50,7 @@ const VideoDetail = () => {
               px={2}
             >
               <Link to={`/channel/${channelId}`}>
-                <Typography
-                  variant={{ sm: "subtitle1", md: "h6" }}
-                  color="#fff"
-                >
+                <Typography variant="subtitle1" color="#fff">
                   {channelTitle}
                   <CheckCircleIcon
                     sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
